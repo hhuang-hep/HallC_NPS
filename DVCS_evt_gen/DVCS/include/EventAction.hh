@@ -62,7 +62,7 @@ public:
   virtual void  BeginOfEventAction(const G4Event*);
   virtual void    EndOfEventAction(const G4Event*);
 
-  void DefinePrimaries(TLorentzVector*, TLorentzVector*, TLorentzVector*, TLorentzVector*, G4double);
+  void DefinePrimaries(TLorentzVector*, TLorentzVector*, TLorentzVector*, TLorentzVector*, G4double, G4double, G4double);
   void DefineWeights(G4double, G4double, G4double, G4double);
   void DefineHMS_elec(G4ThreeVector, G4double);
     
@@ -116,6 +116,8 @@ private:
    G4double  fPz[5];
    G4double  fE[5];
    G4double  fSmeared_vertex_z;
+   G4double  fVertex_x;
+   G4double  fVertex_y;
    G4double  fVertex_z;
    G4double  fPSF;
    G4double  fX_sum;

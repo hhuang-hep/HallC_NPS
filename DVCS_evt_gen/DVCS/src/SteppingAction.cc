@@ -74,25 +74,25 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
 
   G4Track* track = aStep->GetTrack();
 
-  if(
+  /*if(
      volume_pre->GetLogicalVolume()->GetName() == "HMS_opening_log"
      && aStep->GetPreStepPoint()->GetStepStatus() == fGeomBoundary
      && track->GetDynamicParticle()->GetParticleDefinition()->GetPDGEncoding() == 11 //electron
      ){
     fTime_opening = track->GetProperTime();
     fID_opening = track->GetTrackID();
-  }
+  }*/
   if(
-     volume_pre->GetLogicalVolume()->GetName() == "HMS_exit_log"
+     /*volume_pre->GetLogicalVolume()->GetName() == "HMS_exit_log"
      && aStep->GetPreStepPoint()->GetStepStatus() == fGeomBoundary
-     && track->GetDynamicParticle()->GetParticleDefinition()->GetPDGEncoding() == 11 //electron
-     &&track->GetProperTime() > fTime_opening
-     &&track->GetTrackID() == fID_opening
+     && */track->GetDynamicParticle()->GetParticleDefinition()->GetPDGEncoding() == 11 //electron
+    //  &&track->GetProperTime() > fTime_opening
+    //  &&track->GetTrackID() == fID_opening
      ){
     G4double energy = track->GetTotalEnergy()/CLHEP::GeV;//MeV to GeV
     G4ThreeVector mom = track->GetMomentum()/CLHEP::GeV;//MeV to GeV
     fEventAction->DefineHMS_elec(mom, energy);
-  }
+  } // HMS acceptance in G4 are not required (done by MC-single arm for 2023-2024 DVCS experiment in Hall C)
 
   //All of these are temporary
   if(

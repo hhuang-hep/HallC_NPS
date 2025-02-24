@@ -79,6 +79,7 @@ public:
   void SetPhotRec(G4double, G4double, G4double);
   void SetPhotGen(G4double, G4double, G4double);
   void SetVertexz(G4double, G4double);
+  void SetVertexGen(G4double, G4double, G4double);
   void SetKineRec(G4double, G4double, G4double, G4double);
   void SetKineGen(G4double, G4double, G4double, G4double);
   void SetWeights(G4double, G4double, G4double, G4double);
@@ -144,6 +145,8 @@ private:
   G4double fGP_Py;
   G4double fGP_Pz;
   G4double fRV_Z;
+  G4double fGV_X;
+  G4double fGV_Y;
   G4double fGV_Z;
   G4double fRt;
   G4double fGt;

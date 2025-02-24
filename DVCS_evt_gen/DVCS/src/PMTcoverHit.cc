@@ -51,7 +51,7 @@ G4ThreadLocal G4Allocator<PMTcoverHit>* PMTcoverHitAllocator;
 
 PMTcoverHit::PMTcoverHit()\
   : G4VHit(), fColumnID(-1), fRowID(-1), fEdep(0.), fPos(0),
-    fOP_String(-1),
+    fOP_String(""),
     fOP_int(0),
     fOP_origin(0)
 {}
@@ -60,7 +60,7 @@ PMTcoverHit::PMTcoverHit()\
 
 PMTcoverHit::PMTcoverHit(G4int iCol,G4int iRow)
   : G4VHit(), fColumnID(iCol), fRowID(iRow), fEdep(0.), fPos(0),
-    fOP_String(-1),
+    fOP_String(""),
     fOP_int(0),
     fOP_origin(0)
 {}

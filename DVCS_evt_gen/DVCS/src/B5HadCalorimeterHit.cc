@@ -51,7 +51,7 @@ G4ThreadLocal G4Allocator<B5HadCalorimeterHit>* B5HadCalorimeterHitAllocator;
 
 B5HadCalorimeterHit::B5HadCalorimeterHit()\
 : G4VHit(), fColumnID(-1), fRowID(-1), fEdep(0.), fPos(0),
-  fOP_String(-1),
+  fOP_String(""),
   fOP_sc(0),
   fOP_ce(0),
   fPID(0)
@@ -61,7 +61,7 @@ B5HadCalorimeterHit::B5HadCalorimeterHit()\
 
 B5HadCalorimeterHit::B5HadCalorimeterHit(G4int iCol,G4int iRow)
 : G4VHit(), fColumnID(iCol), fRowID(iRow), fEdep(0.), fPos(0),
-  fOP_String(-1),
+  fOP_String(""),
   fOP_sc(0),
   fOP_ce(0),
   fPID(0)

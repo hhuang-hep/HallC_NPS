@@ -1,0 +1,32 @@
+;;Hao Huang 2025/02/24
+;;This is a note about the modifications for 2023-2024 DVCS experiment in Hall C
+;;Below are the modifications to Hosan's version till 2025/2/24
+;;To check Hosan's version, see https://github.com/gboon18/HallC_NPS/tree/master/DVCS_evt_gen
+---------------------------------------------------------------------------------------------
+
+- DVCS.cc
+    - Turned OFF the sweeping magnet (SM_field_flag = false)
+    - Modified the density of LH2 and LD2 targets https://pdg.lbl.gov/2024/AtomicNuclearProperties/
+- B5HadCalorimeterHit.cc, CrystalCoverHit.cc, CrystalFrontCoverHit.cc, PMTcoverHit.cc
+    - fOP_String(""): Modified to run with Geant version 4.11
+- DetectorConstruction.cc
+    - Target cell
+        - Target length: modified to Hall C target length
+        - fTargetCoverLength, fTargetCoverRadius, fTargetWindowThickness: modified to the average of 3 target cells in Hall C
+    - NPS geometry
+        - Increase the gap between crystals from 0.5 to 1 mm
+        - Add 30*1e-3 mm to fWrapThickness for Tedlar
+    - Density of LD2: changed from 0.167 to 0.1638 g/cm^3 (PDG, 2024)
+    - Modified Optics related arrays and properties to run with Geant version 4.11
+- EventAction.cc
+    - Added 1080 random numbers for mis-calibration test
+    - Added lines to print out message every 10% of event number
+    - Aove the branch “edep[1080]” from Tree “T” to “t_dvcs”
+    - Added the generated Vx and Vy to DefinePrimaries
+- HistoManager.cc
+    - Modified to store the generated Vx and Vy.
+    - Modified to store the branch edep[1080] in Tree t_dvcs
+- PrimaryGeneratorAction.cc
+    - Added gEv->TGenGeo::Print() to print out the geometry setting at generator level
+- SteppingAction.cc
+    - Removed the HMS acceptance in Geant4 (HMS is simulated using the MC-single arm package)

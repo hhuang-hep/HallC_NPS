@@ -207,8 +207,8 @@ void HistoManager::Book(G4String fileName)
   fNtuple = new TTree("t","Energy deposition and OP in crystas");
 
   //Energy deposition & optical photons for each event
-  fNtuple->Branch("evtNb", &fEvtNb, "Event Number/I");
-  fNtuple->Branch("edep", fEdep, "energy_deposition[1080]/D");
+  // fNtuple->Branch("evtNb", &fEvtNb, "Event Number/I");
+  // fNtuple->Branch("edep", fEdep, "energy_deposition[1080]/D");
   //temporarily disabled, no op physics
   // fNtuple->Branch("sc", fOP_sc, "scintillated OP[1080]/I");
   // fNtuple->Branch("ce", fOP_ce, "cerenkov OP[1080]/I");
@@ -219,6 +219,7 @@ void HistoManager::Book(G4String fileName)
   //DVCS
   fNtuple_DVCS = new TTree("t_dvcs", "DVCS events generated and reconstructed");
   fNtuple_DVCS->Branch("evtNb", &fEvtNb, "Event Number/I");
+  fNtuple_DVCS->Branch("edep", fEdep, "energy_deposition[1080]/D");
   fNtuple_DVCS->Branch("clust_ene", &fClust_Ene, "Cluster Energy/D");
   fNtuple_DVCS->Branch("clust_x", &fClust_X, "Cluster X/D");
   fNtuple_DVCS->Branch("clust_y", &fClust_Y, "Cluster Y/D");
@@ -244,6 +245,8 @@ void HistoManager::Book(G4String fileName)
   fNtuple_DVCS->Branch("GP_py", &fGP_Py, "Real photon Py from DVCS gen/D");
   fNtuple_DVCS->Branch("GP_pz", &fGP_Pz, "Real photon Pz from DVCS gen/D");
   fNtuple_DVCS->Branch("RV_z", &fRV_Z, "Vertex position Z smeared from Geant4/D");//Considereing HMS resolution.
+  fNtuple_DVCS->Branch("GV_x", &fGV_X, "Vertex position X from DVCS gen/D");
+  fNtuple_DVCS->Branch("GV_y", &fGV_Y, "Vertex position Y from DVCS gen/D");
   fNtuple_DVCS->Branch("GV_z", &fGV_Z, "Vertex position Z from DVCS gen/D");
   fNtuple_DVCS->Branch("Rt", &fRt, "t from Geant4/D");
   fNtuple_DVCS->Branch("Gt", &fGt, "t from DVCS gen/D");
@@ -394,6 +397,13 @@ void HistoManager::SetPhotGen(G4double px, G4double py, G4double pz)
 void HistoManager::SetVertexz(G4double rv_z, G4double gv_z)
 {
   fRV_Z = rv_z;
+  fGV_Z = gv_z;
+}
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+void HistoManager::SetVertexGen(G4double gv_x, G4double gv_y, G4double gv_z)
+{
+  fGV_X = gv_x;
+  fGV_Y = gv_y;
   fGV_Z = gv_z;
 }
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

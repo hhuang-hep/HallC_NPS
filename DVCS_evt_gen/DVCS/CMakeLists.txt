@@ -41,8 +41,8 @@ include(${ROOT_USE_FILE})
 #
 include_directories(${PROJECT_SOURCE_DIR}/include 
                     ${PROJECT_SOURCE_DIR}/shared/include 
-                    /work/hallc/nps/hosan/dvcs_gen
-                    /work/hallc/nps/hosan/NPS_SOFT
+                    /group/nps/hhuang/software/dvcs_gen
+                    /group/nps/hhuang/software/NPS_SOFT
                     /work/hallc/nps/hosan/RFunction
                     ${Geant4_INCLUDE_DIR}
                     ${ROOT_INCLUDE_DIR})
@@ -67,11 +67,11 @@ set(TGenOme libTGenOme.so)
 set(TGenPi0 libTGenPi0.so)
 set(TGenPip libTGenPip.so)
 set(TGenRho libTGenRho.so)
-link_directories(/work/hallc/nps/hosan/dvcs_gen)
+link_directories(/group/nps/hhuang/software/dvcs_gen)
 
 #For software reconstruction
 set(libDVCS libDVCS.so)
-link_directories(/work/hallc/nps/hosan/NPS_SOFT)
+link_directories(/group/nps/hhuang/software/NPS_SOFT)
 
 
 #----------------------------------------------------------------------------

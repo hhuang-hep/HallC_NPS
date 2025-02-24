@@ -76,7 +76,7 @@ void RunAction::BeginOfRunAction(const G4Run* aRun)
   G4Random::setTheSeeds(seeds, index);
   G4Random::showEngineStatus();
 
-G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
+  G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
     
   //initialize cumulative quantities
   //
@@ -144,21 +144,21 @@ void RunAction::EndOfRunAction(const G4Run* aRun)
   
   //print
   //
-  G4cout
+  /*G4cout
     << "\n--------------------End of Run------------------------------\n"
     << "\n mean Energy in Absorber : " << G4BestUnit(fSumEAbs,"Energy")
-    << " +- "                          << G4BestUnit(rmsEAbs,"Energy")  
-    << "\n mean Energy in Gap      : " << G4BestUnit(fSumEGap,"Energy")
-    << " +- "                          << G4BestUnit(rmsEGap,"Energy")
+    << " +- "                                             << G4BestUnit(rmsEAbs,"Energy")  
+    << "\n mean Energy in Gap         : " << G4BestUnit(fSumEGap,"Energy")
+    << " +- "                                             << G4BestUnit(rmsEGap,"Energy")
     << G4endl;
      
   G4cout
     << "\n mean trackLength in Absorber : " << G4BestUnit(fSumLAbs,"Length")
-    << " +- "                               << G4BestUnit(rmsLAbs,"Length")  
-    << "\n mean trackLength in Gap      : " << G4BestUnit(fSumLGap,"Length")
-    << " +- "                               << G4BestUnit(rmsLGap,"Length")
+    << " +- "                                                     << G4BestUnit(rmsLAbs,"Length")  
+    << "\n mean trackLength in Gap         : " << G4BestUnit(fSumLGap,"Length")
+    << " +- "                                                     << G4BestUnit(rmsLGap,"Length")
     << "\n------------------------------------------------------------\n"
-    << G4endl;
+    << G4endl;*/
 
      
   //save histograms

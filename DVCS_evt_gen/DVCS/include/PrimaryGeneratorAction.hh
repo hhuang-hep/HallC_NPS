@@ -41,7 +41,7 @@
 #include "globals.hh"
 #include "G4ParticleGun.hh"
 
-#include "TGenDVCS.h"
+#include <TGenDVCS.h>
 #include <TObject.h>
 
 #include "TVector3.h"

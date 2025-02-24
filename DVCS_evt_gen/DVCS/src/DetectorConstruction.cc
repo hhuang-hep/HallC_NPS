@@ -156,11 +156,12 @@ DetectorConstruction::DetectorConstruction(G4double NPS_distance, G4double NPS_a
   fWindowClampHight = 20*inch;
   fWindowThickness = 0.020*inch;
 
-  fTargetLength      = 150.*mm;//(129.759 - 29.759 + 50.)*mm; 
+  // 0.132 mm is the average width of the entrance of all 3 cells
+  fTargetLength      = 100.*mm;//(129.759 - 29.759 + 50.)*mm; 
   fTargetRadius      = 0.5*50.*mm;//20.179*mm;
-  fTargetCoverLength = (0.125 + 150.)*mm;//(5. + 129.759 - 29.759 + 50.)*mm; //(129.887 - 29.759 + 50.)*mm; 
-  fTargetCoverRadius = (0.125 + 0.5*50.)*mm;//(20.179 + 5.)*mm;//20.32*mm;
-  fTargetWindowThickness = 0.125*mm;//5.*mm;//0.128*mm;
+  fTargetCoverLength = (0.132 + 100.)*mm;//(5. + 129.759 - 29.759 + 50.)*mm; //(129.887 - 29.759 + 50.)*mm; 
+  fTargetCoverRadius = (0.132 + 0.5*50.)*mm;//(20.179 + 5.)*mm;//20.32*mm;
+  fTargetWindowThickness = 0.132*mm;//5.*mm;//0.128*mm;
 
   fWindowInnerJoint1InnerRadius   = 0.5*0.846*inch;
   fWindowInnerJoint1OuterRadius   = 0.5*1.469*inch;
@@ -212,13 +213,13 @@ DetectorConstruction::DetectorConstruction(G4double NPS_distance, G4double NPS_a
   fWorld_Y = 2*1.5*2.1*4.1*m;
   fWorld_Z = 2*1.5*2.1*4.1*m;
 
-  gap = 0.5*mm;//carbon frame thickness
+  gap = 1.0*mm;//gap between crystals
   fFrame_length = 20.*mm;//carbon frame length;
 
   field = field_input;
   fFieldStr = field_str;
 
-  fWrapThickness = 65*1e-3*mm;
+  fWrapThickness = (65+30)*1e-3*mm; // The reflective sheet is 65um, add 30um for Tedlar
   fPMTcoverThickness = 65*1e-3*mm;
 
   fNPS_distance = NPS_distance*mm;
@@ -319,7 +320,7 @@ void DetectorConstruction::DefineMaterials()
   }
   if(targ_type == 1){
     G4cout<<"DetectorConstruction, target type is liquid deuterium"<<G4endl;
-    fTargetMater =  new G4Material("LD2",  1, 2.01*g/mole, 0.167*g/cm3, kStateLiquid, 22*kelvin);
+    fTargetMater =  new G4Material("LD2",  1, 2.01*g/mole, 0.1638*g/cm3, kStateLiquid, 22*kelvin);
   }
   //Target Cover Material Al
   fTargetCoverMater =new G4Material("TargetCover", 2.70*g/cm3, ncomponents=1);
@@ -471,7 +472,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
   
   const G4int n = 8;
   G4double OpticalPhotonWavelength[n] = //in micro meters
-    { 0.400, 0.440, 0.480, 0.520, 0.560, 0.600, 0.640, 0.680};
+    { 0.680, 0.640, 0.600, 0.560, 0.520, 0.480, 0.440, 0.400};
   G4double OpticalPhotonEnergy[n] = {0.}; 
   for (G4int i = 0 ; i < n ; i++){
     OpticalPhotonEnergy[i] = (hc/OpticalPhotonWavelength[i])*eV;
@@ -479,7 +480,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
 
   //Refractive Index of Crystal
   G4double RefractiveIndexCrystal[n] = 
-    { 2.35, 2.30, 2.27, 2.25, 2.23, 2.21, 2.201, 2.2}; 
+    { 2.2, 2.201, 2.21, 2.23, 2.25, 2.27, 2.30, 2.35}; 
 
   //Refractive Index of Air
   G4double RefractiveIndexAir[n] = 
@@ -493,7 +494,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
 
   //Measured Transmittance(longitudinal)
   G4double T[n] = 
-    { 0.33, 0.48, 0.62, 0.67, 0.68, 0.689, 0.69, 0.69};
+    { 0.69, 0.69, 0.689, 0.68, 0.67, 0.62, 0.48, 0.33};
 
   //Attenuation length
   G4double LAL[n] = {0.};
@@ -507,19 +508,20 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
   }
 
   G4double ScintilFast[n] =
-    {10., 25., 45., 55., 40., 35., 20., 12.};
+    {12., 20., 35., 40., 55., 45., 25., 10.};
 
   G4MaterialPropertiesTable* CrystalOP = new G4MaterialPropertiesTable();
   CrystalOP->AddProperty("RINDEX",       OpticalPhotonEnergy, RefractiveIndexCrystal,n);
   CrystalOP->AddProperty("ABSLENGTH",    OpticalPhotonEnergy, LAL,     n);
-  CrystalOP->AddProperty("FASTCOMPONENT",OpticalPhotonEnergy, ScintilFast,     n);
+  CrystalOP->AddProperty("SCINTILLATIONCOMPONENT1",OpticalPhotonEnergy, ScintilFast,     n);
   //slow component is also filled with fast component
-  CrystalOP->AddProperty("SLOWCOMPONENT",OpticalPhotonEnergy, ScintilFast,     n);
+  CrystalOP->AddProperty("SCINTILLATIONCOMPONENT2",OpticalPhotonEnergy, ScintilFast,     n);
   CrystalOP->AddConstProperty("SCINTILLATIONYIELD",0.455*0.5*3.34*15*4.19673/MeV);//to get 15 p.e./MeV
   CrystalOP->AddConstProperty("RESOLUTIONSCALE",1.0);  
-  CrystalOP->AddConstProperty("FASTTIMECONSTANT", 13.26*ns);
-  CrystalOP->AddConstProperty("SLOWTIMECONSTANT", 412.2*ns);
-  CrystalOP->AddConstProperty("YIELDRATIO",0.85);
+  CrystalOP->AddConstProperty("SCINTILLATIONTIMECONSTANT1", 13.26*ns);
+  CrystalOP->AddConstProperty("SCINTILLATIONTIMECONSTANT2", 412.2*ns);
+  CrystalOP->AddConstProperty("SCINTILLATIONYIELD1",0.85);
+  CrystalOP->AddConstProperty("SCINTILLATIONYIELD2",0.15);
   CrystalOP->DumpTable();
 
   fDetectorMater->SetMaterialPropertiesTable(CrystalOP);
