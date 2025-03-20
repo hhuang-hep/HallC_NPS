@@ -158,7 +158,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   if (aStep->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     stepl = aStep->GetStepLength();
       
-  // if (volume_pre->GetName() == "Target_log") fEventAction->AddAbs(edep,stepl);
+  if (volume_pre->GetName() == "Target_log") fEventAction->AddAbs(edep,stepl);
   if (volume_pre->GetName() == "Crystal_log")      fEventAction->AddGap(edep,stepl);
 }
 
