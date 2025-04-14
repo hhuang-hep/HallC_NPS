@@ -220,11 +220,11 @@ void HistoManager::Book(G4String fileName)
   fNtuple_DVCS = new TTree("t_dvcs", "DVCS events generated and reconstructed");
   fNtuple_DVCS->Branch("evtNb", &fEvtNb, "Event Number/I");
   fNtuple_DVCS->Branch("edep", fEdep, "energy_deposition[1080]/D");
-  fNtuple_DVCS->Branch("clust_ene", &fClust_Ene, "Cluster Energy/D");
-  fNtuple_DVCS->Branch("clust_x", &fClust_X, "Cluster X/D");
-  fNtuple_DVCS->Branch("clust_y", &fClust_Y, "Cluster Y/D");
-  fNtuple_DVCS->Branch("clust_W2", &fClust_W2, "Invariant mass from Clustering/D");
-  fNtuple_DVCS->Branch("clust_size", &fClust_size, "Cluster size/I");
+  // fNtuple_DVCS->Branch("clust_ene", &fClust_Ene, "Cluster Energy/D");
+  // fNtuple_DVCS->Branch("clust_x", &fClust_X, "Cluster X/D");
+  // fNtuple_DVCS->Branch("clust_y", &fClust_Y, "Cluster Y/D");
+  // fNtuple_DVCS->Branch("clust_W2", &fClust_W2, "Invariant mass from Clustering/D");
+  // fNtuple_DVCS->Branch("clust_size", &fClust_size, "Cluster size/I");
   fNtuple_DVCS->Branch("psf", &fPSF, "Phase Space Factor from DVCS gen/D");
   fNtuple_DVCS->Branch("RIE_px", &fRIE_Px, "Initial electron Px from Geant4, Actually, it is beam energy/D");
   fNtuple_DVCS->Branch("RIE_py", &fRIE_Py, "Initial electron Py from Geant4, Actually, it is beam energy/D");
@@ -232,35 +232,35 @@ void HistoManager::Book(G4String fileName)
   fNtuple_DVCS->Branch("GIE_px", &fGIE_Px, "Initial electron Px from DVCS gen/D");
   fNtuple_DVCS->Branch("GIE_py", &fGIE_Py, "Initial electron Py from DVCS gen/D");
   fNtuple_DVCS->Branch("GIE_pz", &fGIE_Pz, "Initial electron Pz from DVCS gen/D");
-  fNtuple_DVCS->Branch("RSE_px", &fRSE_Px, "Scattered electron Px detected in HMS window in Geant4/D");
-  fNtuple_DVCS->Branch("RSE_py", &fRSE_Py, "Scattered electron Py detected in HMS window in Geant4/D");
-  fNtuple_DVCS->Branch("RSE_pz", &fRSE_Pz, "Scattered electron Pz detected in HMS window in Geant4/D");
+  // fNtuple_DVCS->Branch("RSE_px", &fRSE_Px, "Scattered electron Px detected in HMS window in Geant4/D");
+  // fNtuple_DVCS->Branch("RSE_py", &fRSE_Py, "Scattered electron Py detected in HMS window in Geant4/D");
+  // fNtuple_DVCS->Branch("RSE_pz", &fRSE_Pz, "Scattered electron Pz detected in HMS window in Geant4/D");
   fNtuple_DVCS->Branch("GSE_px", &fGSE_Px, "Scattered electron Px from DVCS gen/D");
   fNtuple_DVCS->Branch("GSE_py", &fGSE_Py, "Scattered electron Py from DVCS gen/D");
   fNtuple_DVCS->Branch("GSE_pz", &fGSE_Pz, "Scattered electron Pz from DVCS gen/D");
-  fNtuple_DVCS->Branch("RP_px", &fRP_Px, "Real photon Px reconstructed from clustering/D");
-  fNtuple_DVCS->Branch("RP_py", &fRP_Py, "Real photon Py reconstructed from clustering/D");
-  fNtuple_DVCS->Branch("RP_pz", &fRP_Pz, "Real photon Pz reconstructed from clustering/D");
+  // fNtuple_DVCS->Branch("RP_px", &fRP_Px, "Real photon Px reconstructed from clustering/D");
+  // fNtuple_DVCS->Branch("RP_py", &fRP_Py, "Real photon Py reconstructed from clustering/D");
+  // fNtuple_DVCS->Branch("RP_pz", &fRP_Pz, "Real photon Pz reconstructed from clustering/D");
   fNtuple_DVCS->Branch("GP_px", &fGP_Px, "Real photon Px from DVCS gen/D");
   fNtuple_DVCS->Branch("GP_py", &fGP_Py, "Real photon Py from DVCS gen/D");
   fNtuple_DVCS->Branch("GP_pz", &fGP_Pz, "Real photon Pz from DVCS gen/D");
-  fNtuple_DVCS->Branch("RV_z", &fRV_Z, "Vertex position Z smeared from Geant4/D");//Considereing HMS resolution.
+  // fNtuple_DVCS->Branch("RV_z", &fRV_Z, "Vertex position Z smeared from Geant4/D");//Considereing HMS resolution.
   fNtuple_DVCS->Branch("GV_x", &fGV_X, "Vertex position X from DVCS gen/D");
   fNtuple_DVCS->Branch("GV_y", &fGV_Y, "Vertex position Y from DVCS gen/D");
   fNtuple_DVCS->Branch("GV_z", &fGV_Z, "Vertex position Z from DVCS gen/D");
-  fNtuple_DVCS->Branch("Rt", &fRt, "t from Geant4/D");
+  // fNtuple_DVCS->Branch("Rt", &fRt, "t from Geant4/D");
   fNtuple_DVCS->Branch("Gt", &fGt, "t from DVCS gen/D");
-  fNtuple_DVCS->Branch("RxB", &fRxB, "xB from Geant4/D");
+  // fNtuple_DVCS->Branch("RxB", &fRxB, "xB from Geant4/D");
   fNtuple_DVCS->Branch("GxB", &fGxB, "xB from DVCS gen/D");
-  fNtuple_DVCS->Branch("RQ2", &fRQ2, "Q2 from Geant4/D");
+  // fNtuple_DVCS->Branch("RQ2", &fRQ2, "Q2 from Geant4/D");
   fNtuple_DVCS->Branch("GQ2", &fGQ2, "Q2 from DVCS gen/D");
-  fNtuple_DVCS->Branch("Rphi", &fRphi, "phi from Geant4/D");
+  // fNtuple_DVCS->Branch("Rphi", &fRphi, "phi from Geant4/D");
   fNtuple_DVCS->Branch("Gphi", &fGphi, "phi from DVCS gen/D");
   fNtuple_DVCS->Branch("X_sum", &fX_sum, "XSecSum(0) from DVCS gen/D");
   fNtuple_DVCS->Branch("X_diff", &fX_diff, "XSecDif() from DVCS gen/D");
   fNtuple_DVCS->Branch("X_BH", &fX_BH, "XSecSum(1) from DVCS gen/D");
-  fNtuple_DVCS->Branch("Rr_val", &fRr_val, "RFunction using values from Geant4/D");
-  fNtuple_DVCS->Branch("Gr_val", &fGr_val, "RFunction using values from DVCS gen/D");
+  // fNtuple_DVCS->Branch("Rr_val", &fRr_val, "RFunction using values from Geant4/D");
+  // fNtuple_DVCS->Branch("Gr_val", &fGr_val, "RFunction using values from DVCS gen/D");
 
   G4cout << "\n----> Output file is open in " << fileName << G4endl;
 
