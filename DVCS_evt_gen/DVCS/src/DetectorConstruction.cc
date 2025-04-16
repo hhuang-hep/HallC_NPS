@@ -1814,7 +1814,8 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
   ySweepingMagnetRot->rotateY(fSweepingMagnet_theta); //Angle in radian                     
 
   //Put sweeping magnet ONLY when magnetic field is ON. When OFF there is no physical sweeping magent.
-  if(field){
+  //20250415 by Hao: comment out the if argument to put sweeping magnet even when magnetic field is OFF to simulate the shadow of the magnet on the calorimeter
+  // if(field){
     new G4PVPlacement(ySweepingMagnetRot,
 		      G4ThreeVector(fSweepingMagnet_pos*sin(-fSweepingMagnet_arm_theta), fSweepingMagnetSTPcenter_Y, fSweepingMagnet_pos*cos(-fSweepingMagnet_arm_theta)),
 		      fLogicMagnetic,
@@ -1823,7 +1824,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
 		      false,
 		      0,
 		      fCheckOverlaps);
-  }
+  // }
 
   //
   //Part 1
