@@ -282,7 +282,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
     }
     // fHistoManager->FillNtuple();
 
-    if( dvcsGlobals::hit_HMS_CALO_flag ){
+    /*if( dvcsGlobals::hit_HMS_CALO_flag ){
         G4double Ebeam = dvcsGlobals::Ebeam; 
         G4int ObjectNumber=TProcessID::GetObjectCount(); 
 
@@ -359,7 +359,8 @@ void EventAction::EndOfEventAction(const G4Event* evt)
         hit_HMS = false;
         calo_evt->Reset();
         TProcessID::SetObjectCount(ObjectNumber);
-    }
+    }*/
+    fHistoManager->FillNtupleDVCS(); // Fill ntuple here when the clustering is disabled
 
     // Get hits collections
     //cc-in2p3 does not understand(or geant4.10.02.0 does not understand) "auto" 
