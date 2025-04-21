@@ -1089,7 +1089,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
   //
   //Beampipe1
   //
-  G4Trd*
+  /*G4Trd*
     sBeampipe1 = new G4Trd("Beampipe1_sol",
 			   0.5*fBeampipe1Outerdx1,//half dx1
 			   0.5*fBeampipe1Outerdx2,//half dx2
@@ -1280,7 +1280,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
   		    false,
   		    0,
   		    fCheckOverlaps);
-
+  */ //Hao (2025/01/21): commented out the beampipe as it is not used in the simulation
   //
   //Al window for the chamber
   //
@@ -2530,11 +2530,11 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
   G4VisAttributes* WindowOuterJoint2_3VacuumVisAtt = new G4VisAttributes(G4Colour(0.,1.,0.));//green
   fLogicWindowOuterJoint2_3Vacuum->SetVisAttributes(WindowOuterJoint2_3VacuumVisAtt);
   G4VisAttributes* Beampipe1VacuumVisAtt = new G4VisAttributes(G4Colour(0.,1.,0.));//green
-  fLogicBeampipe1Vacuum->SetVisAttributes(Beampipe1VacuumVisAtt);
+  // fLogicBeampipe1Vacuum->SetVisAttributes(Beampipe1VacuumVisAtt);
   G4VisAttributes* Beampipe2VacuumVisAtt = new G4VisAttributes(G4Colour(0.,1.,0.));//green
-  fLogicBeampipe2Vacuum->SetVisAttributes(Beampipe2VacuumVisAtt);
+  // fLogicBeampipe2Vacuum->SetVisAttributes(Beampipe2VacuumVisAtt);
   G4VisAttributes* Beampipe3VacuumVisAtt = new G4VisAttributes(G4Colour(0.,1.,0.));//green
-  fLogicBeampipe3Vacuum->SetVisAttributes(Beampipe3VacuumVisAtt);
+  // fLogicBeampipe3Vacuum->SetVisAttributes(Beampipe3VacuumVisAtt);
 
   G4VisAttributes* FluxVisAtt = new G4VisAttributes(G4Colour(0.,0.,1.));//blue
   fLogicFlux->SetVisAttributes(FluxVisAtt);
