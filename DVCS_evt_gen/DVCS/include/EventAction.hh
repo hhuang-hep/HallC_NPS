@@ -75,8 +75,8 @@ public:
   G4int GetEventNb();
     
 private:
-   RunAction*    fRunAct;
-   HistoManager* fHistoManager;
+  RunAction*    fRunAct;
+  HistoManager* fHistoManager;
 
   G4int fEvtNb;
 
@@ -103,31 +103,31 @@ private:
   G4int fFluxPID;
   G4ThreeVector fPos;
 
-   TDVCSEvent* dvcs_evt;
-   TCaloEvent* calo_evt;
+  TDVCSEvent* dvcs_evt;
+  TCaloEvent* calo_evt;
 
-   G4bool    hit_HMS;
+  G4bool    hit_HMS;
 
-   TLorentzVector* L_calo_phot;
+  TLorentzVector* L_calo_phot;
 
-   G4double  M_targ;
-   G4double  fPx[5];
-   G4double  fPy[5];
-   G4double  fPz[5];
-   G4double  fE[5];
-   G4double  fSmeared_vertex_z;
-   G4double  fVertex_x;
-   G4double  fVertex_y;
-   G4double  fVertex_z;
-   G4double  fPSF;
-   G4double  fX_sum;
-   G4double  fX_diff;
-   G4double  fX_BH;
+  G4double  M_targ;
+  G4double  fPx[5];
+  G4double  fPy[5];
+  G4double  fPz[5];
+  G4double  fE[5];
+  G4double  fSmeared_vertex_z;
+  G4double  fVertex_x;
+  G4double  fVertex_y;
+  G4double  fVertex_z;
+  G4double  fPSF;
+  G4double  fX_sum;
+  G4double  fX_diff;
+  G4double  fX_BH;
 
-   G4double  fEnergyAbs, fEnergyGap;
-   G4double  fTrackLAbs, fTrackLGap;
-                     
-   G4int     fPrintModulo;                             
+  G4double  fEnergyAbs, fEnergyGap;
+  G4double  fTrackLAbs, fTrackLGap;
+                    
+  G4int     fPrintModulo;                             
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
