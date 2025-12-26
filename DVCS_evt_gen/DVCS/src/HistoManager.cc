@@ -204,7 +204,7 @@ void HistoManager::Book(G4String fileName)
     return;
   }
   
-  fNtuple = new TTree("t","Energy deposition and OP in crystas");
+  // fNtuple = new TTree("t","Energy deposition and OP in crystas");
 
   //Energy deposition & optical photons for each event
   // fNtuple->Branch("evtNb", &fEvtNb, "Event Number/I");
