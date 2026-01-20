@@ -50,6 +50,15 @@ set(NPS_SOFT_DIR
     CACHE PATH "Path to NPS_SOFT"
 )
 
+# Check the path to dvcs_gen and NPS_SOFT
+if(NOT DVCS_GEN_DIR OR NOT EXISTS ${DVCS_GEN_DIR})
+    message(FATAL_ERROR "DVCS_GEN_DIR is not set or does not exist")
+endif()
+
+if(NOT NPS_SOFT_DIR OR NOT EXISTS ${NPS_SOFT_DIR})
+    message(FATAL_ERROR "NPS_SOFT_DIR is not set or does not exist")
+endif()
+
 #
 include_directories(${PROJECT_SOURCE_DIR}/include 
                     ${PROJECT_SOURCE_DIR}/shared/include 
