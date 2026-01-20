@@ -38,11 +38,23 @@ include(${ROOT_USE_FILE})
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
+
+# Allow environment variables as default values
+set(DVCS_GEN_DIR
+    $ENV{DVCS_GEN_DIR}
+    CACHE PATH "Path to dvcs_gen"
+)
+
+set(NPS_SOFT_DIR
+    $ENV{NPS_SOFT_DIR}
+    CACHE PATH "Path to NPS_SOFT"
+)
+
 #
 include_directories(${PROJECT_SOURCE_DIR}/include 
                     ${PROJECT_SOURCE_DIR}/shared/include 
-                    /group/nps/hhuang/software/dvcs_gen
-                    /group/nps/hhuang/software/NPS_SOFT
+                    ${DVCS_GEN_DIR}
+                    ${NPS_SOFT_DIR}
                     /work/hallc/nps/hosan/RFunction
                     ${Geant4_INCLUDE_DIR}
                     ${ROOT_INCLUDE_DIR})
@@ -67,11 +79,11 @@ set(TGenOme libTGenOme.so)
 set(TGenPi0 libTGenPi0.so)
 set(TGenPip libTGenPip.so)
 set(TGenRho libTGenRho.so)
-link_directories(/group/nps/hhuang/software/dvcs_gen)
+link_directories(${DVCS_GEN_DIR})
 
 #For software reconstruction
 set(libDVCS libDVCS.so)
-link_directories(/group/nps/hhuang/software/NPS_SOFT)
+link_directories(${NPS_SOFT_DIR})
 
 
 #----------------------------------------------------------------------------
