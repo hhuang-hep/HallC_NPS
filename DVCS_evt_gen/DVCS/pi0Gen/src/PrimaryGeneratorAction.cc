@@ -138,20 +138,20 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     G4double q0primemin=0.5*Q2*(1.-xB)/(xB*(M_targ+nu+q3));
 
     G4double mpi = 0.1349766;             // pi0 mass in GeV
-    G4double W2 = M*M + 2.0*M*nu - Q2;
+    G4double W2 = M_targ*M_targ + 2.0*M_targ*nu - Q2;
     G4double W  = std::sqrt(W2);
 
     // CM energies & momenta for gamma* p -> pi0 p
-    G4double Eg_star = (W2 - M*M - Q2) / (2.0 * W);
+    G4double Eg_star = (W2 - M_targ*M_targ - Q2) / (2.0 * W);
     G4double q_star  = std::sqrt(Eg_star*Eg_star + Q2);
 
-    G4double Epi_star = (W2 + mpi*mpi - M*M) / (2.0 * W);
+    G4double Epi_star = (W2 + mpi*mpi - M_targ*M_targ) / (2.0 * W);
 
     auto lambda = [](double a, double b, double c){
         return a*a + b*b + c*c - 2.0*a*b - 2.0*a*c - 2.0*b*c;
     };
 
-    G4double ppi_star = std::sqrt( std::max(0.0, lambda(W2, mpi*mpi, M*M)) ) / (2.0 * W);
+    G4double ppi_star = std::sqrt( std::max(0.0, lambda(W2, mpi*mpi, M_targ*M_targ)) ) / (2.0 * W);
 
     G4double t_cos_plus  = mpi*mpi - Q2 - 2.0*Eg_star*Epi_star + 2.0*q_star*ppi_star; // cosθ*=+1
     G4double t_cos_minus = mpi*mpi - Q2 - 2.0*Eg_star*Epi_star - 2.0*q_star*ppi_star; // cosθ*=-1
